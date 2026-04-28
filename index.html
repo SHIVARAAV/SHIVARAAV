@@ -7,172 +7,349 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="icon" type="image/jpeg" href="aalogogg.jpeg">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script>
+    // अगर स्क्रीन की चौड़ाई 768px से कम है (यानी मोबाइल है)
+    if (window.innerWidth <= 768) {
+        window.location.href = "mobile.html";
+    }
+</script>
     <style>
-        :root { --gold: #FFD700; --dark-bg: #000c14; }
-        body { background-color: var(--dark-bg); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
+        :root { --gold: #FFD700; --dark-bg: #000c14; --yt-red: #ff0000; }
+        
+        body { 
+            background-color: var(--dark-bg); 
+            color: white; 
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
         .main-container { 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('1000061464.jpg');
-            background-size: cover; background-attachment: fixed; background-position: center;
-            min-height: 100vh; padding: 20px 10px;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('1000061464.jpg');
+            background-size: cover; 
+            background-attachment: fixed; 
+            background-position: center;
+            min-height: 100vh; 
+            padding: 20px;
         }
-        .nav-links { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; margin-bottom: 30px; border-bottom: 1px solid rgba(255,215,0,0.2); padding-bottom: 15px; }
-        .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; font-size: 0.75rem; text-transform: uppercase; }
-        
+
+        .nav-links { 
+            display: flex; 
+            justify-content: center; 
+            gap: 30px; 
+            margin-bottom: 40px; 
+            border-bottom: 1px solid rgba(255,215,0,0.2); 
+            padding-bottom: 15px; 
+        }
+        .nav-links a { color: var(--gold); text-decoration: none; font-weight: bold; text-transform: uppercase; font-size: 1rem; transition: 0.3s; }
+        .nav-links a:hover { color: white; text-shadow: 0 0 10px var(--gold); }
+
         .board-card { 
-            border: 1px solid rgba(255, 215, 0, 0.4); border-radius: 15px; 
-            background: rgba(0, 15, 25, 0.8); backdrop-filter: blur(10px); 
-            padding: 15px; margin-bottom: 20px; height: 100%;
+            border: 1px solid rgba(255, 215, 0, 0.4); 
+            border-radius: 15px; 
+            background: rgba(0, 15, 25, 0.7); 
+            backdrop-filter: blur(10px); 
+            padding: 15px; 
+            height: 100%; 
+            box-shadow: 0 8px 32px rgba(0,0,0,0.8); 
+            transition: 0.3s;
+            margin-bottom: 20px;
         }
+
         .board-title { 
-            color: black; background: linear-gradient(45deg, #FFD700, #b8860b); 
-            font-weight: bold; padding: 10px; margin: -15px -15px 20px -15px; 
-            border-radius: 12px 12px 0 0; font-size: 1.2rem;
+            color: black; 
+            background: linear-gradient(45deg, #FFD700, #b8860b); 
+            font-weight: bold; 
+            padding: 10px; 
+            margin: -15px -15px 20px -15px; 
+            border-radius: 12px 12px 0 0; 
+            font-size: 1.5rem; 
+            text-transform: uppercase;
         }
-        .class-header { border-bottom: 1px solid rgba(255,215,0,0.4); color: var(--gold); font-weight: bold; margin-bottom: 8px; font-size: 0.95rem; }
-        .item-list { list-style: none; padding: 0; font-size: 0.8rem; text-align: left; }
-        .item-list li { padding: 3px 0; border-bottom: 1px solid rgba(255,215,0,0.05); }
-        .item-list a { color: #eee; text-decoration: none; }
-
-        .yt-banner-btn { background: linear-gradient(45deg, #ff0000, #b71c1c); color: white !important; text-decoration: none; display: block; padding: 15px; border-radius: 10px; font-weight: 900; border: 2px solid white; margin: 30px 0; }
-        .premium-title { background: linear-gradient(45deg, #ff4d4d, #b71c1c); color: white; padding: 12px; border-radius: 10px; margin-bottom: 20px; font-weight: bold; width: 100%; border: 2px solid white;}
         
-        .info-note { background: rgba(255, 255, 255, 0.05); border-left: 5px solid var(--gold); padding: 15px; margin-bottom: 30px; text-align: left; font-size: 0.85rem; }
+        .class-header { border-bottom: 1px solid rgba(255,215,0,0.5); color: var(--gold); font-weight: bold; margin-bottom: 12px; font-size: 1.1rem; padding-bottom: 5px; }
         
-        .paid-box { background: rgba(255, 255, 255, 0.07); border: 1px solid #ff4d4d; border-radius: 8px; padding: 6px; margin-bottom: 8px; text-decoration: none !important; display: block; }
-        .paid-text { color: white; font-weight: 500; display: block; font-size: 0.7rem; }
-        .price { color: var(--gold); font-weight: bold; font-size: 0.7rem; }
-        .lock { color: #ff4d4d; font-size: 0.9rem; }
+        .item-list { list-style: none; padding: 0; font-size: 0.95rem; text-align: left; }
+        .item-list li { padding: 6px 0; border-bottom: 1px solid rgba(255,215,0,0.05); }
+        .item-list a { color: #e0e0e0; text-decoration: none; display: block; transition: 0.3s; }
+        .item-list a:hover { color: var(--gold); padding-left: 8px; font-weight: bold; }
 
-        @media (max-width: 768px) {
-            .col-mobile-two { width: 50% !important; flex: 0 0 50%; max-width: 50%; }
-            .col-mobile-one { width: 100% !important; flex: 0 0 100%; max-width: 100%; }
+        /* Full Width YouTube Banner Button */
+        .yt-banner-btn {
+            background: linear-gradient(45deg, #ff0000, #b71c1c);
+            color: white !important;
+            text-decoration: none;
+            display: block;
+            width: 100%;
+            padding: 20px;
+            border-radius: 15px;
+            font-weight: 900;
+            font-size: 1.4rem;
+            border: 3px solid white;
+            margin: 40px 0;
+            transition: 0.4s;
+            box-shadow: 0 0 20px rgba(255,0,0,0.4);
+            text-transform: uppercase;
         }
+        .yt-banner-btn:hover { transform: scale(1.02); background: white; color: #ff0000 !important; border-color: #ff0000; box-shadow: 0 0 30px rgba(255,255,255,0.5); }
+
+        .premium-title {
+            background: linear-gradient(45deg, #ff4d4d, #b71c1c);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            border: 2px solid white;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .info-note {
+            background: rgba(255, 255, 255, 0.05);
+            border-left: 5px solid var(--gold);
+            padding: 20px;
+            margin: 20px auto 40px auto;
+            max-width: 900px;
+            border-radius: 8px;
+            text-align: left;
+        }
+        .info-note p { margin-bottom: 10px; line-height: 1.6; }
+        
+        .best-student-box {
+            border: 2px dashed var(--gold);
+            padding: 8px 20px;
+            display: inline-block;
+            border-radius: 50px;
+            color: var(--gold);
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-top: 10px;
+            background: rgba(255, 215, 0, 0.1);
+        }
+
+        .paid-box {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid #ff4d4d;
+            border-radius: 10px;
+            padding: 12px;
+            margin-bottom: 12px;
+            text-decoration: none !important;
+            display: block;
+            transition: 0.3s;
+        }
+        .paid-box:hover { background: rgba(255, 77, 77, 0.2); transform: scale(1.03); border-color: white; }
+        .paid-text { color: white; font-weight: 500; display: block; margin-top: 5px; font-size: 0.85rem; text-align: center; }
+        .price { color: var(--gold); font-weight: bold; font-size: 0.8rem; display: block; text-align: center; }
+        .lock { color: #ff4d4d; font-size: 1.2rem; display: block; text-align: center; }
+
+        .footer-section { 
+            border-top: 1px solid rgba(255,215,0,0.3); 
+            margin-top: 60px; 
+            padding: 40px 20px; 
+            background: rgba(0,0,0,0.8); 
+            backdrop-filter: blur(10px);
+        }
+        .shop-btn {
+            background: white; color: black; padding: 8px 15px; border-radius: 5px;
+            text-decoration: none; font-weight: bold; margin-right: 10px; font-size: 13px; border: 1px solid var(--gold); transition: 0.3s;
+            display: inline-block; margin-bottom: 5px;
+        }
+        .shop-btn:hover { background: var(--gold); transform: translateY(-3px); }
+
+        .footer-links a { color: #aaa; text-decoration: none; margin: 0 10px; font-size: 14px; transition: 0.3s; }
+        .footer-links a:hover { color: var(--gold); }
     </style>
 </head>
 <body>
 
 <div class="main-container text-center">
     <header>
-        <img src="1000061253.webp" alt="Logo" style="height: 80px; margin-bottom: 10px;">
-        <h1 class="fw-bold mb-3" style="color:var(--gold); text-shadow: 2px 2px 10px black; font-size: 1.6rem;">SHIVARAAV EDUCATIONAL</h1>
+        <img src="1000061253.webp" alt="Logo" style="height: 100px; margin-bottom: 10px;">
+        <h1 class="fw-bold mb-3" style="color:var(--gold); letter-spacing: 3px; text-shadow: 2px 2px 10px black;">SHIVARAAV EDUCATIONAL</h1>
         <nav class="nav-links">
-            <a href="index.html">Home</a><a href="help.html">Help</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="lecture.html">LECTURES</a><a href="rbse-updates.html">RBSE</a><a href="cbse-updates.html">CBSE</a><a href="up-updates.html">UP Board</a>
+            <a href="index.html">Home</a>
+            <a href="help.html">Help</a>
+            <a href="about.html">About</a>
+            <a href="privacy.html">Privacy</a>
+            <a href="disclaimer.html">Disclaimer</a>
+            <a href="contact.html">Contact</a>
+            <a href="lecture.html".>LECTURES Updates</a>
+            <a href="rbse-updates.html">RBSE Updates</a>
+            <a href="cbse-updates.html">CBSE Updates</a>
+            <a href="up-updates.html">Up Board Updates</a>
         </nav>
     </header>
 
     <div class="container">
-        <div class="row g-2">
-            <div class="col-lg-4 col-md-6 col-mobile-two">
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6">
                 <div class="board-card">
                     <h3 class="board-title">CBSE</h3>
-                    <div class="row g-1">
-                        <div class="col-6"><div class="class-header">10th</div>
-                            <ul class="item-list"><li><a href="cbse10-notes.html">Notes</a></li><li><a href="cbse10-books.html">Books</a></li><li><a href="cbse10-quiz.html">Quizzes</a></li><li><a href="cbse10-papers.html">Papers</a></li><li><a href="cbse10-important.html">Imp. Q.</a></li></ul>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="class-header">Class 10</div>
+                            <ul class="item-list">
+                                <li><a href="cbse10-notes.html">1. Notes</a></li>
+                                <li><a href="cbse10-books.html">2. Old Books</a></li>
+                                <li><a href="cbse10-quiz.html">3. Quizzes</a></li>
+                                <li><a href="cbse10-papers.html">4. Old Papers</a></li>
+                                <li><a href="cbse10-important.html">5. Important Q.</a></li>
+                            </ul>
                         </div>
-                        <div class="col-6"><div class="class-header">12th</div>
-                            <ul class="item-list"><li><a href="cbse12-notes.html">Notes</a></li><li><a href="cbse12-books.html">Books</a></li><li><a href="cbse12-quiz.html">Quizzes</a></li><li><a href="cbse12-papers.html">Papers</a></li><li><a href="cbse12-important.html">Imp. Q.</a></li></ul>
+                        <div class="col-6" style="border-left: 1px solid rgba(255,215,0,0.4);">
+                            <div class="class-header">Class 12</div>
+                            <ul class="item-list">
+                                <li><a href="cbse12-notes.html">1. Notes</a></li>
+                                <li><a href="cbse12-books.html">2. Old Books</a></li>
+                                <li><a href="cbse12-quiz.html">3. Quizzes</a></li>
+                                <li><a href="cbse12-papers.html">4. Old Papers</a></li>
+                                <li><a href="cbse12-important.html">5. Important Q.</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-6 col-mobile-two">
+
+            <div class="col-lg-4 col-md-6">
                 <div class="board-card">
                     <h3 class="board-title">RBSE</h3>
-                    <div class="row g-1">
-                        <div class="col-6"><div class="class-header">10th</div>
-                            <ul class="item-list"><li><a href="rbse10-notes.html">Notes</a></li><li><a href="rbse10-books.html">Books</a></li><li><a href="rbse10-quiz.html">Quizzes</a></li><li><a href="rbse10-papers.html">Papers</a></li><li><a href="rbse10-important.html">Imp. Q.</a></li></ul>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="class-header">Class 10</div>
+                            <ul class="item-list">
+                                <li><a href="rbse10-notes.html">1. Notes</a></li>
+                                <li><a href="rbse10-books.html">2. Old Books</a></li>
+                                <li><a href="rbse10-quiz.html">3. Quizzes</a></li>
+                                <li><a href="rbse10-papers.html">4. Old Papers</a></li>
+                                <li><a href="rbse10-important.html">5. Important Q.</a></li>
+                            </ul>
                         </div>
-                        <div class="col-6"><div class="class-header">12th</div>
-                            <ul class="item-list"><li><a href="rbse12-notes.html">Notes</a></li><li><a href="rbse12-books.html">Books</a></li><li><a href="rbse12-quiz.html">Quizzes</a></li><li><a href="rbse12-papers.html">Papers</a></li><li><a href="rbse12-important.html">Imp. Q.</a></li></ul>
+                        <div class="col-6" style="border-left: 1px solid rgba(255,215,0,0.4);">
+                            <div class="class-header">Class 12</div>
+                            <ul class="item-list">
+                                <li><a href="rbse12-notes.html">1. Notes</a></li>
+                                <li><a href="rbse12-books.html">2. Old Books</a></li>
+                                <li><a href="rbse12-quiz.html">3. Quizzes</a></li>
+                                <li><a href="rbse12-papers.html">4. Old Papers</a></li>
+                                <li><a href="rbse12-important.html">5. Important Q.</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-12 col-mobile-one">
+
+            <div class="col-lg-4 col-md-12">
                 <div class="board-card">
                     <h3 class="board-title">UP BOARD</h3>
-                    <div class="row g-1">
-                        <div class="col-6"><div class="class-header">10th</div>
-                            <ul class="item-list"><li><a href="up10-notes.html">Notes</a></li><li><a href="up10-books.html">Books</a></li><li><a href="up10-quiz.html">Quizzes</a></li><li><a href="up10-papers.html">Papers</a></li><li><a href="up10-important.html">Imp. Q.</a></li></ul>
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="class-header">Class 10</div>
+                            <ul class="item-list">
+                                <li><a href="up10-notes.html">1. Notes</a></li>
+                                <li><a href="up10-books.html">2. Old Books</a></li>
+                                <li><a href="up10-quiz.html">3. Quizzes</a></li>
+                                <li><a href="up10-papers.html">4. Old Papers</a></li>
+                                <li><a href="up10-important.html">5. Important Q.</a></li>
+                            </ul>
                         </div>
-                        <div class="col-6"><div class="class-header">12th</div>
-                            <ul class="item-list"><li><a href="up12-notes.html">Notes</a></li><li><a href="up12-books.html">Books</a></li><li><a href="up12-quiz.html">Quizzes</a></li><li><a href="up12-papers.html">Papers</a></li><li><a href="up12-important.html">Imp. Q.</a></li></ul>
+                        <div class="col-6" style="border-left: 1px solid rgba(255,215,0,0.4);">
+                            <div class="class-header">Class 12</div>
+                            <ul class="item-list">
+                                <li><a href="up12-notes.html">1. Notes</a></li>
+                                <li><a href="up12-books.html">2. Old Books</a></li>
+                                <li><a href="up12-quiz.html">3. Quizzes</a></li>
+                                <li><a href="up12-papers.html">4. Old Papers</a></li>
+                                <li><a href="up12-important.html">5. Important Q.</a></li>
+                            </ul>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
 
-        <a href="https://youtube.com/@ShivaRaav" class="yt-banner-btn">SUBSCRIBE SHIVARAAV ON YOUTUBE</a>
+        <a href="https://youtube.com/@ShivaRaav" target="_blank" class="yt-banner-btn">
+            <i class="fab fa-youtube"></i> SUBSCRIBE SHIVARAAV ON YOUTUBE
+        </a>
 
         <div class="premium-title">👑 PREMIUM PAID COURSES</div>
 
         <div class="info-note">
-            <p><i class="fas fa-star text-warning"></i> 1. बेस्ट प्रीमियम कंटेंट के लिए <strong>Shivaraav App</strong> डाउनलोड करें।</p>
-            <p><i class="fas fa-check-circle text-success"></i> 2. सभी कोर्सेज की कीमत मात्र <strong>₹99/-</strong> है।</p>
+            <p><i class="fas fa-star text-warning"></i> 1. अगर आपको सब कुछ अच्छा और प्रीमियम चाहिए तो <strong>Shivaraav App</strong> डाउनलोड करें।</p>
+            <p><i class="fas fa-check-circle text-success"></i> 2. आप चाहें तो इन कोर्सों को वेबसाइट या फिर App दोनों पर खरीद सकते हैं जिससे आपको इंडिया का सबसे बेस्ट स्टडी मैटेरियल मिलेगा और सभी कोर्स मात्र <strong>₹99/-</strong> में हैं।</p>
+            <div class="text-center">
+                <div class="best-student-box">Best for students</div>
+            </div>
         </div>
 
-        <div class="row g-2">
-            <div class="col-lg-4 col-md-6 col-mobile-two">
+        <div class="row g-4">
+            
+            <div class="col-lg-4 col-md-6">
                 <div class="board-card">
-                    <h3 class="board-title">CBSE PAID</h3>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10th Hindi Medium</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10th English Medium</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Sci (Hindi)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Sci (Eng)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Arts (Hindi)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Arts (Eng)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Bio (Hindi)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Bio (Eng)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Com (Hindi)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Com (Eng)</span><span class="price">₹99</span></a>
+                    <h3 class="board-title">CBSE COURSES</h3>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10 (English Medium)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10 (Hindi Medium)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Maths/Sci (English)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Maths/Sci (Hindi)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Bio Science (English)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Bio Science (Hindi)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Arts (English Medium)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Arts (Hindi Medium)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Commerce (English)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Commerce (Hindi)</span><span class="price">मात्र ₹99/-</span></a>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-6 col-mobile-two">
+            <div class="col-lg-4 col-md-6">
                 <div class="board-card">
-                    <h3 class="board-title">RBSE PAID</h3>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10th Hindi Medium</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10th English Medium</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Sci (Hindi)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Sci (Eng)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Arts (Hindi)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Arts (Eng)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Bio (Hindi)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Bio (Eng)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Com (Hindi)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Com (Eng)</span><span class="price">₹99</span></a>
+                    <h3 class="board-title">RBSE COURSES</h3>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10 (English Medium)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10 (Hindi Medium)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Maths/Sci (English)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Maths/Sci (Hindi)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Bio Science (English)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Bio Science (Hindi)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Arts (English Medium)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Arts (Hindi Medium)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Commerce (English)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Commerce (Hindi)</span><span class="price">मात्र ₹99/-</span></a>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-12 col-mobile-one">
+            <div class="col-lg-4 col-md-12">
                 <div class="board-card">
-                    <h3 class="board-title">UP BOARD PAID</h3>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10th Hindi Medium</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10th English Medium</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Sci (Hindi)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Sci (Eng)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Arts (Hindi)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Arts (Eng)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Bio (Hindi)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Bio (Eng)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Com (Hindi)</span><span class="price">₹99</span></a>
-                    <a href="pay.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12th Com (Eng)</span><span class="price">₹99</span></a>
+                    <h3 class="board-title">UP BOARD COURSES</h3>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10 (English Medium)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10 (Hindi Medium)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Maths/Sci (English)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Maths/Sci (Hindi)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Bio Science (English)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Bio Science (Hindi)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Arts (English Medium)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Arts (Hindi Medium)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Commerce (English)</span><span class="price">मात्र ₹99/-</span></a>
+                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Commerce (Hindi)</span><span class="price">मात्र ₹99/-</span></a>
                 </div>
             </div>
         </div>
     </div>
 
-    <footer class="footer-section" style="margin-top: 50px; padding: 20px;">
-        <h5 style="color:var(--gold);">SHIVARAAV SERVICES</h5>
-        <a href="#" class="shop-btn" style="background:white; color:black; padding:5px 10px; border-radius:5px; text-decoration:none; margin:5px; display:inline-block;">🛒 Amazon</a>
-        <a href="#" class="shop-btn" style="background:white; color:black; padding:5px 10px; border-radius:5px; text-decoration:none; margin:5px; display:inline-block;">🛍️ Flipkart</a>
-        <p style="color:#aaa; font-size:12px; margin-top:20px;">© 2026 SHIVARAAV - All Rights Reserved</p>
-    </footer>
-</div>
-    <div style="width: 100%; text-align: center; margin-top: 20px; padding-bottom: 10px; overflow: hidden;">
+    <footer class="footer-section mt-5">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6 text-md-start mb-3 mb-md-0">
+                    <h5 style="color:var(--gold); letter-spacing: 2px; font-weight: bold;">SHIVARAAV SERVICES</h5>
+                    <div class="mt-2">
+                        <a href="#" class="shop-btn">🛒 Amazon</a>
+                        <a href="#" class="shop-btn">🛒 Flipkart</a>
+                        <a href="#" class="shop-btn">🛍️ Meesho</a>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <a href="https://youtube.com/@ShivaRaav" target="_blank" class="youtube-btn">Subscribe on YouTube</a>
+
+
+
+                    <div style="width: 100%; text-align: center; margin-top: 20px; padding-bottom: 10px; overflow: hidden;">
     <img src="alogogg.jpeg" alt="Shivaraav Brand Logo" style="width: 100%; max-width: 100%; height: auto; display: block; filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.3));">
 </div>
-    
-</body>
-</html>
