@@ -1,5 +1,4 @@
-[1:40 AM, 4/29/2026] shivaraav: Gf
-[1:40 AM, 4/29/2026] shivaraav: <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
     <meta charset="UTF-8">
@@ -125,13 +124,20 @@
         .price { color: var(--gold); font-weight: bold; font-size: 0.8rem; display: block; text-align: center; }
         .lock { color: #ff4d4d; font-size: 1.2rem; display: block; text-align: center; }
 
-        /* मोबाइल के लिए डेस्कटॉप जैसा लुक देने वाला कोड */
+        /* मोबाइल के लिए विशेष कोडिंग (दो ऊपर, एक नीचे) */
         @media (max-width: 768px) {
-            .col-md-6, .col-lg-4 {
-                width: 50% !important; /* मोबाइल पर 2 बॉक्स आमने-सामने */
+            .col-mobile-two {
+                width: 50% !important; /* ऊपर के 2 बॉक्स आमने-सामने */
                 flex: 0 0 50% !important;
                 max-width: 50% !important;
             }
+            .col-mobile-one {
+                width: 100% !important; /* नीचे का तीसरा बॉक्स पूरी चौड़ाई में */
+                flex: 0 0 100% !important;
+                max-width: 100% !important;
+                margin-top: 10px; /* थोड़ा गैप */
+            }
+            /* मोबाइल पर फोंट थोड़े सेट करने के लिए */
             .board-title { font-size: 1.1rem; padding: 5px; }
             .class-header { font-size: 0.9rem; }
             .item-list { font-size: 0.75rem; }
@@ -164,8 +170,7 @@
     </header>
 
     <div class="container">
-        <div class="row g-4">
-            <div class="col-lg-4 col-md-6">
+        <div class="row g-2"> <div class="col-lg-4 col-md-6 col-mobile-two">
                 <div class="board-card">
                     <h3 class="board-title">CBSE</h3>
                     <div class="row">
@@ -173,27 +178,23 @@
                             <div class="class-header">Class 10</div>
                             <ul class="item-list">
                                 <li><a href="cbse10-notes.html">1. Notes</a></li>
-                                <li><a href="cbse10-books.html">2. Old Books</a></li>
+                                <li><a href="cbse10-books.html">2. Books</a></li>
                                 <li><a href="cbse10-quiz.html">3. Quizzes</a></li>
-                                <li><a href="cbse10-papers.html">4. Old Papers</a></li>
-                                <li><a href="cbse10-important.html">5. Important Q.</a></li>
                             </ul>
                         </div>
-                        <div class="col-6" style="border-left: 1px solid rgba(255,215,0,0.4);">
+                        <div class="col-6">
                             <div class="class-header">Class 12</div>
                             <ul class="item-list">
                                 <li><a href="cbse12-notes.html">1. Notes</a></li>
-                                <li><a href="cbse12-books.html">2. Old Books</a></li>
+                                <li><a href="cbse12-books.html">2. Books</a></li>
                                 <li><a href="cbse12-quiz.html">3. Quizzes</a></li>
-                                <li><a href="cbse12-papers.html">4. Old Papers</a></li>
-                                <li><a href="cbse12-important.html">5. Important Q.</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-6 col-mobile-two">
                 <div class="board-card">
                     <h3 class="board-title">RBSE</h3>
                     <div class="row">
@@ -201,27 +202,23 @@
                             <div class="class-header">Class 10</div>
                             <ul class="item-list">
                                 <li><a href="rbse10-notes.html">1. Notes</a></li>
-                                <li><a href="rbse10-books.html">2. Old Books</a></li>
+                                <li><a href="rbse10-books.html">2. Books</a></li>
                                 <li><a href="rbse10-quiz.html">3. Quizzes</a></li>
-                                <li><a href="rbse10-papers.html">4. Old Papers</a></li>
-                                <li><a href="rbse10-important.html">5. Important Q.</a></li>
                             </ul>
                         </div>
-                        <div class="col-6" style="border-left: 1px solid rgba(255,215,0,0.4);">
+                        <div class="col-6">
                             <div class="class-header">Class 12</div>
                             <ul class="item-list">
                                 <li><a href="rbse12-notes.html">1. Notes</a></li>
-                                <li><a href="rbse12-books.html">2. Old Books</a></li>
+                                <li><a href="rbse12-books.html">2. Books</a></li>
                                 <li><a href="rbse12-quiz.html">3. Quizzes</a></li>
-                                <li><a href="rbse12-papers.html">4. Old Papers</a></li>
-                                <li><a href="rbse12-important.html">5. Important Q.</a></li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-4 col-md-12 col-mobile-one">
                 <div class="board-card">
                     <h3 class="board-title">UP BOARD</h3>
                     <div class="row">
@@ -229,20 +226,14 @@
                             <div class="class-header">Class 10</div>
                             <ul class="item-list">
                                 <li><a href="up10-notes.html">1. Notes</a></li>
-                                <li><a href="up10-books.html">2. Old Books</a></li>
-                                <li><a href="up10-quiz.html">3. Quizzes</a></li>
-                                <li><a href="up10-papers.html">4. Old Papers</a></li>
-                                <li><a href="up10-important.html">5. Important Q.</a></li>
+                                <li><a href="up10-books.html">2. Books</a></li>
                             </ul>
                         </div>
-                        <div class="col-6" style="border-left: 1px solid rgba(255,215,0,0.4);">
+                        <div class="col-6">
                             <div class="class-header">Class 12</div>
                             <ul class="item-list">
                                 <li><a href="up12-notes.html">1. Notes</a></li>
-                                <li><a href="up12-books.html">2. Old Books</a></li>
-                                <li><a href="up12-quiz.html">3. Quizzes</a></li>
-                                <li><a href="up12-papers.html">4. Old Papers</a></li>
-                                <li><a href="up12-important.html">5. Important Q.</a></li>
+                                <li><a href="up12-books.html">2. Books</a></li>
                             </ul>
                         </div>
                     </div>
@@ -256,67 +247,38 @@
 
         <div class="premium-title">👑 PREMIUM PAID COURSES</div>
 
-        <div class="info-note">
-            <p><i class="fas fa-star text-warning"></i> 1. अगर आपको सब कुछ अच्छा और प्रीमियम चाहिए तो <strong>Shivaraav App</strong> डाउनलोड करें।</p>
-            <p><i class="fas fa-check-circle text-success"></i> 2. आप चाहें तो इन कोर्सों को वेबसाइट या फिर App दोनों पर खरीद सकते हैं जिससे आपको इंडिया का सबसे बेस्ट स्टडी मैटेरियल मिलेगा और सभी कोर्स मात्र <strong>₹99/-</strong> में हैं।</p>
-        </div>
-
-        <div class="row g-4">
-            <div class="col-lg-4 col-md-6">
+        <div class="row g-2">
+            <div class="col-lg-4 col-md-6 col-mobile-two">
                 <div class="board-card">
-                    <h3 class="board-title">CBSE COURSES</h3>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10 (English)</span><span class="price">₹99/-</span></a>
+                    <h3 class="board-title">CBSE PAID</h3>
                     <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10 (Hindi)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Sci (Eng)</span><span class="price">₹99/-</span></a>
                     <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Sci (Hindi)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Bio (Eng)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Bio (Hindi)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Arts (Eng)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Arts (Hindi)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Com (Eng)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Com (Hindi)</span><span class="price">₹99/-</span></a>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-4 col-md-6 col-mobile-two">
                 <div class="board-card">
-                    <h3 class="board-title">RBSE COURSES</h3>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10 (English)</span><span class="price">₹99/-</span></a>
+                    <h3 class="board-title">RBSE PAID</h3>
                     <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10 (Hindi)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Sci (Eng)</span><span class="price">₹99/-</span></a>
                     <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Sci (Hindi)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Bio (Eng)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Bio (Hindi)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Arts (Eng)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Arts (Hindi)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Com (Eng)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Com (Hindi)</span><span class="price">₹99/-</span></a>
                 </div>
             </div>
 
-            <div class="col-lg-4 col-md-12">
+            <div class="col-lg-4 col-md-12 col-mobile-one">
                 <div class="board-card">
-                    <h3 class="board-title">UP BOARD COURSES</h3>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10 (English)</span><span class="price">₹99/-</span></a>
+                    <h3 class="board-title">UP BOARD PAID</h3>
                     <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 10 (Hindi)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Sci (Eng)</span><span class="price">₹99/-</span></a>
                     <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Sci (Hindi)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Bio (Eng)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Bio (Hindi)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Arts (Eng)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Arts (Hindi)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Com (Eng)</span><span class="price">₹99/-</span></a>
-                    <a href="payment-scanner.html" class="paid-box"><i class="fas fa-lock lock"></i><span class="paid-text">Class 12 Com (Hindi)</span><span class="price">₹99/-</span></a>
                 </div>
             </div>
         </div>
     </div>
 
     <footer class="footer-section">
-        <h5 style="color:var(--gold); letter-spacing: 2px;">SHIVARAAV SERVICES</h5>
+        <h5 style="color:var(--gold);">SHIVARAAV SERVICES</h5>
         <a href="#" class="shop-btn">🛒 Amazon</a>
         <a href="#" class="shop-btn">🛍️ Flipkart</a>
-        <p style="font-size: 14px; color: #aaa; margin-top: 20px;">© 2026 SHIVARAAV - All Rights Reserved</p>
+        <p style="font-size: 14px; color: #aaa; margin-top: 20px;">© 2026 SHIVARAAV</p>
     </footer>
 </div>
 </body>
