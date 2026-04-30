@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHIVARAAV Quiz Player</title>
+    <style>
+        /* पुराना CSS यहाँ रहेगा (जैसा पहले दिया था) */
+        :root { --primary: #1a73e8; --success: #28a745; --error: #dc3545; }
+        body { font-family: Arial, sans-serif; background-color: #f4f7f6; padding: 20px; display: flex; justify-content: center; }
+        #quiz-container { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 100%; max-width: 600px; }
+        .option { display: block; width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; background: none; }
+        .correct { background-color: var(--success) !important; color: white; }
+        .wrong { background-color: var(--error) !important; color: white; }
+    </style>
+</head>
+<body>
+
+<div id="quiz-container">
+    <div id="quiz-box">
+        <div id="question-text" style="font-size:1.2rem; margin-bottom:20px;">सवाल लोड हो रहे हैं, कृपया रुकें...</div>
+        <div id="options-list"></div>
+        <button id="next-btn" style="display:none; margin-top:20px; padding:10px 20px; background:#1a73e8; color:white; border:none; border-radius:5px; cursor:pointer;" onclick="loadNextQuestion()">अगला सवाल</button>
+    </div>
+    <div id="result-card" style="display:none; text-align:center;">
+        <h2>आपका स्कोर: <span id="final-score"></span></h2>
+        <button onclick="location.reload()">दोबारा शुरू करें</button>
+    </div>
+</div>
+
+<script>
+    let questions = [];
+    let currentQ = 0;
+    let score = 0;
+    const scriptURL = "YOUR_APPS_SCRIPT_URL_HERE"; // यहाँ अपना Apps Script URL डालें
+
+    async function fetchQuestions() {
+        try {
+            const response = await fetch(scriptURL);
+            questions = await response.json();
+            loadQuestion();
+        } catch (error) {
+            document.getElementById('question-text').innerText = "त्रुटि: डेटा लोड नहीं हो सका!";
+        }
+    }
+
+    function loadQuestion() {
+        if (questions.length === 0) return;
+        let q = questions[currentQ];
+        document.getElementById('question-text').innerText = q.q;
+        let optionsHtml = '';
+        q.options.forEach((opt, index) => {
+            optionsHtml += <button class="option" onclick="checkAnswer(this, ${index})">${opt}</button>;
+        });
+        document.getElementById('options-list').innerHTML = optionsHtml;
+        document.getElementById('next-btn').style.display = 'none';
+    }
+
+    function checkAnswer(btn, index) {
+        let correct = parseInt(questions[currentQ].ans);
+        let btns = document.getElementsByClassName('option');
+        for(let b of btns) b.disabled = true;
+
+        if (index === correct) {
+            btn.classList.add('correct');
+            score++;
+        } else {
+            btn.classList.add('wrong');
+            btns[correct].classList.add('correct');
+        }
+        document.getElementById('next-btn').style.display = 'block';
+    }
+
+    function loadNextQuestion() {
+        currentQ++;
+        if (currentQ < questions.length) {
+            loadQuestion();
+        } else {
+            document.getElementById('quiz-box').style.display = 'none';
+            document.getElementById('result-card').style.display = 'block';
+            document.getElementById('final-score').innerText = ${score}/${questions.length};
+        }
+    }
+
+    window.onload = fetchQuestions;
+</script>
+</body>
+</html>
