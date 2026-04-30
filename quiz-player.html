@@ -5,26 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SHIVARAAV Quiz Player</title>
     <style>
-        /* पुराना CSS यहाँ रहेगा (जैसा पहले दिया था) */
         :root { --primary: #1a73e8; --success: #28a745; --error: #dc3545; }
         body { font-family: Arial, sans-serif; background-color: #f4f7f6; padding: 20px; display: flex; justify-content: center; }
-        #quiz-container { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 100%; max-width: 600px; }
-        .option { display: block; width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; background: none; }
-        .correct { background-color: var(--success) !important; color: white; }
-        .wrong { background-color: var(--error) !important; color: white; }
+        #quiz-container { background: white; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); width: 100%; max-width: 600px; min-height: 300px; }
+        .option { display: block; width: 100%; padding: 12px; margin: 10px 0; border: 2px solid #ddd; border-radius: 8px; cursor: pointer; background: none; text-align: left; font-size: 1rem; transition: 0.3s; }
+        .option:hover { background-color: #f0f7ff; }
+        .correct { background-color: var(--success) !important; color: white; border-color: var(--success); }
+        .wrong { background-color: var(--error) !important; color: white; border-color: var(--error); }
+        .btn-next { margin-top: 20px; padding: 10px 25px; background: var(--primary); color: white; border: none; border-radius: 5px; cursor: pointer; float: right; }
     </style>
 </head>
 <body>
 
 <div id="quiz-container">
     <div id="quiz-box">
-        <div id="question-text" style="font-size:1.2rem; margin-bottom:20px;">सवाल लोड हो रहे हैं, कृपया रुकें...</div>
+        <div id="question-text" style="font-size:1.3rem; font-weight:bold; margin-bottom:20px; color:#333;">सवाल लोड हो रहे हैं, कृपया रुकें...</div>
         <div id="options-list"></div>
-        <button id="next-btn" style="display:none; margin-top:20px; padding:10px 20px; background:#1a73e8; color:white; border:none; border-radius:5px; cursor:pointer;" onclick="loadNextQuestion()">अगला सवाल</button>
+        <button id="next-btn" class="btn-next" style="display:none;" onclick="loadNextQuestion()">अगला सवाल</button>
+        <div style="clear:both;"></div>
     </div>
+
     <div id="result-card" style="display:none; text-align:center;">
-        <h2>आपका स्कोर: <span id="final-score"></span></h2>
-        <button onclick="location.reload()">दोबारा शुरू करें</button>
+        <h2 style="color: var(--primary);">क्विज़ पूरा हुआ!</h2>
+        <div style="font-size: 2.5rem; margin: 20px 0; font-weight: bold;" id="final-score">0/0</div>
+        <button onclick="location.reload()" style="padding:10px 20px; cursor:pointer; background:#333; color:white; border:none; border-radius:5px;">दोबारा शुरू करें</button>
     </div>
 </div>
 
@@ -32,27 +36,43 @@
     let questions = [];
     let currentQ = 0;
     let score = 0;
-    const scriptURL = "https://script.google.com/macros/s/AKfycbwEgimTxG8XmDv2zE8eNduKXIlpUmZ_StIq_VKFtVsMckFasqtqYfc8b6bQHmJodyyf/exec"; // यहाँ अपना Apps Script URL डालें
+    
+    // तुम्हारा Web App URL यहाँ है (एकदम सही)
+    const scriptURL = "https://script.google.com/macros/s/AKfycbwEgimTxG8XmDv2zE8eNduKXIlpUmZ_StIq_VKFtVsMckFasqtqYfc8b6bQHmJodyyf/exec"; 
 
     async function fetchQuestions() {
+        // यह लाइन URL से ID को पकड़ेगी (जैसे: ?id=cbse10math01)
+        const urlParams = new URLSearchParams(window.location.search);
+        const quizId = urlParams.get('id');
+
         try {
             const response = await fetch(scriptURL);
-            questions = await response.json();
-            loadQuestion();
+            const allData = await response.json();
+            
+            // यहाँ हम डेटा को तुम्हारी ID के हिसाब से फिल्टर कर रहे हैं
+            questions = allData.filter(item => item.quizId === quizId);
+            
+            if (questions.length > 0) {
+                loadQuestion();
+            } else {
+                document.getElementById('question-text').innerText = "इस ID के लिए कोई सवाल नहीं मिला। गूगल शीट चेक करें!";
+            }
         } catch (error) {
+            console.error("Error fetching data:", error);
             document.getElementById('question-text').innerText = "त्रुटि: डेटा लोड नहीं हो सका!";
         }
     }
 
     function loadQuestion() {
-        if (questions.length === 0) return;
         let q = questions[currentQ];
         document.getElementById('question-text').innerText = q.q;
         let optionsHtml = '';
-// लाइन 52 से 54 को इससे बदलें:
-q.options.forEach((opt, index) => {
-    optionsHtml += <button class="option" onclick="checkAnswer(this, ${index})">${opt}</button>;
-});
+
+        // यहाँ बैकट्रिक्स (`) का इस्तेमाल किया गया है ताकि एरर न आए
+        q.options.forEach((opt, index) => {
+            optionsHtml += <button class="option" onclick="checkAnswer(this, ${index})">${opt}</button>;
+        });
+
         document.getElementById('options-list').innerHTML = optionsHtml;
         document.getElementById('next-btn').style.display = 'none';
     }
@@ -79,6 +99,7 @@ q.options.forEach((opt, index) => {
         } else {
             document.getElementById('quiz-box').style.display = 'none';
             document.getElementById('result-card').style.display = 'block';
+            // यहाँ भी बैकट्रिक्स लगाए हैं
             document.getElementById('final-score').innerText = ${score}/${questions.length};
         }
     }
