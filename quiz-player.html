@@ -51,7 +51,7 @@
             // डेटा को फिल्टर करना
             questions = allData.filter(item => item.quizId === quizId);
             
-function loadQuestion() {
+    function loadQuestion() {
     if (questions.length === 0) return;
     let q = questions[currentQ];
     document.getElementById('question-text').innerText = q.q;
