@@ -49,9 +49,10 @@
         let q = questions[currentQ];
         document.getElementById('question-text').innerText = q.q;
         let optionsHtml = '';
-        q.options.forEach((opt, index) => {
-            optionsHtml += <button class="option" onclick="checkAnswer(this, ${index})">${opt}</button>;
-        });
+// लाइन 52 से 54 को इससे बदलें:
+q.options.forEach((opt, index) => {
+    optionsHtml += <button class="option" onclick="checkAnswer(this, ${index})">${opt}</button>;
+});
         document.getElementById('options-list').innerHTML = optionsHtml;
         document.getElementById('next-btn').style.display = 'none';
     }
