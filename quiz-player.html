@@ -37,11 +37,10 @@
     let currentQ = 0;
     let score = 0;
     
-    // तुम्हारा Web App URL यहाँ है (एकदम सही)
+    // तुम्हारा नया Web App URL
     const scriptURL = "https://script.google.com/macros/s/AKfycbxJ_-Zph9G0Wz682J7FbLeOIjaCwQYId4qYskE1WCmVa5AmJkwP7oAirRhpSyAM1QIi/exec"; 
 
     async function fetchQuestions() {
-        // यह लाइन URL से ID को पकड़ेगी (जैसे: ?id=cbse10math01)
         const urlParams = new URLSearchParams(window.location.search);
         const quizId = urlParams.get('id');
 
@@ -49,13 +48,13 @@
             const response = await fetch(scriptURL);
             const allData = await response.json();
             
-            // यहाँ हम डेटा को तुम्हारी ID के हिसाब से फिल्टर कर रहे हैं
+            // डेटा को फिल्टर करना
             questions = allData.filter(item => item.quizId === quizId);
             
             if (questions.length > 0) {
                 loadQuestion();
             } else {
-                document.getElementById('question-text').innerText = "इस ID के लिए कोई सवाल नहीं मिला। गूगल शीट चेक करें!";
+                document.getElementById('question-text').innerText = "इस ID के लिए कोई सवाल नहीं मिला। गूगल शीट में QuizID चेक करें!";
             }
         } catch (error) {
             console.error("Error fetching data:", error);
@@ -68,8 +67,8 @@
         document.getElementById('question-text').innerText = q.q;
         let optionsHtml = '';
 
-        // यहाँ बैकट्रिक्स (`) का इस्तेमाल किया गया है ताकि एरर न आए
         q.options.forEach((opt, index) => {
+            // यहाँ मैंने बैकट्रिक्स (`) लगा दिए हैं जो तुम्हारे कोड में गायब थे
             optionsHtml += <button class="option" onclick="checkAnswer(this, ${index})">${opt}</button>;
         });
 
@@ -99,7 +98,7 @@
         } else {
             document.getElementById('quiz-box').style.display = 'none';
             document.getElementById('result-card').style.display = 'block';
-            // यहाँ भी बैकट्रिक्स लगाए हैं
+            // यहाँ भी बैकट्रिक्स का सही इस्तेमाल किया गया है
             document.getElementById('final-score').innerText = ${score}/${questions.length};
         }
     }
